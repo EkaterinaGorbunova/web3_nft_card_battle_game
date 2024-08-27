@@ -37,8 +37,6 @@ const Home = () => {
     useEffect(() => {
     const createPlayerToken = async () => {
       try {
-        console.log('walletAddress', walletAddress)
-
         const playerExists = await contract.isPlayer(walletAddress);
         const playerTokenExists = await contract.isPlayerToken(walletAddress);
 

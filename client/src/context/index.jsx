@@ -13,6 +13,7 @@ export const GlobalContextProvider = ({ children }) => {
   const [provider, setProvider] = useState(null);
   const [contract, setContract] = useState(null);
   const [showAlert, setShowAlert] = useState({ status: false, type: 'info', message: '' });
+  const [battleName, setbattleName] = useState('');
 
   const navigate = useNavigate();
 
@@ -75,7 +76,7 @@ export const GlobalContextProvider = ({ children }) => {
 
   return (
   <GlobalContext.Provider value={{
-    contract, walletAddress, showAlert, setShowAlert
+    contract, walletAddress, showAlert, setShowAlert, battleName, setbattleName
   }}>
   {children}
   </GlobalContext.Provider>
