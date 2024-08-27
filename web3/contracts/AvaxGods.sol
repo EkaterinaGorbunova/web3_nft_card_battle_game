@@ -65,7 +65,7 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
 
   function isPlayer(address addr) public view returns (bool) {
     if(playerInfo[addr] == 0) {
-      return false;
+      return false; // player doesn't exist
     } else {
       return true;
     }
