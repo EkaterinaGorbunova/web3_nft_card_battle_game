@@ -29,6 +29,9 @@ export const GlobalContextProvider = ({ children }) => {
     pendingBattles: [],
     activeBattle: null,
   });
+  const [errorMessage, setErrorMessage] = useState('');
+  const [updateGameData, setUpdateGameData] = useState(0);
+  const [battleGround, setBattleGround] = useState('bg-astral')
 
   const navigate = useNavigate();
 
@@ -79,6 +82,7 @@ export const GlobalContextProvider = ({ children }) => {
         provider,
         walletAddress,
         setShowAlert,
+        setUpdateGameData,
       });
     }
   }, [contract]);
@@ -106,7 +110,7 @@ export const GlobalContextProvider = ({ children }) => {
 
         fetchedBattles.forEach((battle) => {
           console.log('battle.players.find((player)', battle.players)
-          console.log('walletAddress', walletAddress)
+          console.log('walletAddress:', walletAddress)
 
           if (battle.players.find((player) => player.toLowerCase() === walletAddress.toLowerCase())) {
             if (battle.winner.startsWith('0x00')) {
@@ -120,7 +124,22 @@ export const GlobalContextProvider = ({ children }) => {
     };
 
     fetchGameData();
-  }, [contract, walletAddress]);
+  }, [contract, walletAddress, updateGameData]);
+
+    //* Handle error messages
+    useEffect(() => {
+      if (errorMessage) {
+        const parsedErrorMessage = errorMessage?.reason?.slice('execution reverted: '.length).slice(0, -1);
+  
+        if (parsedErrorMessage) {
+          setShowAlert({
+            status: true,
+            type: 'failure',
+            message: parsedErrorMessage,
+          });
+        }
+      }
+    }, [errorMessage]);
 
   return (
     <GlobalContext.Provider
@@ -132,6 +151,8 @@ export const GlobalContextProvider = ({ children }) => {
         battleName,
         setBattleName,
         gameData,
+        errorMessage,
+        setErrorMessage,
       }}
     >
       {children}
