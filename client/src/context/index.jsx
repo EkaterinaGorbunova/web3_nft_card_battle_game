@@ -146,13 +146,11 @@ export const GlobalContextProvider = ({ children }) => {
       value={{
         contract,
         walletAddress,
-        showAlert,
-        setShowAlert,
-        battleName,
-        setBattleName,
+        showAlert, setShowAlert,
+        battleName, setBattleName,
         gameData,
-        errorMessage,
-        setErrorMessage,
+        battleGround, setBattleGround,
+        errorMessage, setErrorMessage,
       }}
     >
       {children}
