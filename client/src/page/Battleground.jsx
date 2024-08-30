@@ -18,7 +18,7 @@ const Battleground = () => {
     setShowAlert({ status: true, type: 'info', message: `${ground.name} is battle ready!` });
 
     setTimeout(() => {
-      navigate(-1);
+      navigate(-1); // go back to battle page
     }, 1000);
   };
 
