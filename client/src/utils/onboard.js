@@ -118,5 +118,6 @@ export async function SwitchNetwork() {
     }],
   }).catch((error) => {
     console.log(error);
+    setErrorMessage(error)
   });
 }

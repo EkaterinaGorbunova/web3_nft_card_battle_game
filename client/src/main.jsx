@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/create-battle' element={<CreateBattle />} />
         <Route path='/join-battle' element={<JoinBattle />} />
         <Route path='/battleground' element={<Battleground />} />
-        <Route path='/battle/:battleName' element={<Battle />} /> // dynamic
+        <Route path='/battle/:battleName' element={<Battle />} />
       </Routes>
     </GlobalContextProvider>
   </BrowserRouter>

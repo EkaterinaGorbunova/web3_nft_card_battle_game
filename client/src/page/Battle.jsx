@@ -1,8 +1,9 @@
+/* eslint-disable prefer-destructuring */
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import styles from '../styles';
-import { Alert, ActionButton, Card, GameInfo, PlayerInfo } from '../components';
+import { ActionButton, Alert, Card, GameInfo, PlayerInfo } from '../components';
 import { useGlobalContext } from '../context';
 import { attack, attackSound, defense, defenseSound, player01 as player01Icon, player02 as player02Icon } from '../assets';
 import { playAudio } from '../utils/animation.js';
@@ -15,8 +16,6 @@ const Battle = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('gameData:', gameData.activeBattle)
-
     const getPlayerInfo = async () => {
       try {
         let player01Address = null;
@@ -51,13 +50,41 @@ const Battle = () => {
     if (contract && gameData.activeBattle) getPlayerInfo();
   }, [contract, gameData, battleName]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!gameData?.activeBattle) navigate('/');
+    }, [2000]);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const makeAMove = async (choice) => {
+    playAudio(choice === 1 ? attackSound : defenseSound);
+
+    try {
+      console.log('Wove run')
+      await contract.attackOrDefendChoice(choice, battleName, { gasLimit: 200000 });
+      console.log('Wove run2')
+
+
+      setShowAlert({
+        status: true,
+        type: 'info',
+        message: `Initiating ${choice === 1 ? 'attack' : 'defense'}`,
+      });
+    } catch (error) {
+      console.log('ERROR while Move:', error)
+      setErrorMessage(error);
+    }
+  };
+
   return (
     <div className={`${styles.flexBetween} ${styles.gameContainer} ${battleGround}`}>
-        {showAlert?.status && <Alert type={showAlert.type} message={showAlert.message} />}
-      
-        <PlayerInfo player={player2} playerIcon={player02Icon} mt />
+      {showAlert?.status && <Alert type={showAlert.type} message={showAlert.message} />}
 
-        <div className={`${styles.flexCenter} flex-col my-10`}>
+      <PlayerInfo player={player2} playerIcon={player02Icon} mt />
+
+      <div className={`${styles.flexCenter} flex-col my-10`}>
         <Card
           card={player2}
           title={player2?.playerName}
@@ -91,7 +118,7 @@ const Battle = () => {
 
       <GameInfo />
     </div>
-  )
-}
+  );
+};
 
-export default Battle
+export default Battle;
