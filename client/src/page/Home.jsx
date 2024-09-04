@@ -40,8 +40,7 @@ const Home = () => {
     };
 
     if (contract) checkForPlayerToken();
-  // }, [contract, walletAddress, navigate]);
-}, [contract]);
+  }, [contract, walletAddress]);
 
   useEffect(() => {
     if (gameData.activeBattle) {

@@ -105,7 +105,12 @@ export const createEventListeners = ({ navigate, contract, provider, walletAddre
       console.log('You lost!', args.loser)
       setShowAlert({ status: true, type: 'failure', message: 'You lost!' });
     }
+    
+    setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
 
-    navigate('/create-battle');
+    setTimeout(() => {
+      navigate('/create-battle');
+    }, 5000);
+
   });
 };

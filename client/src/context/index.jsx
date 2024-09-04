@@ -117,7 +117,7 @@ export const GlobalContextProvider = ({ children }) => {
         player2Ref,
       });
     }
-  }, [contract, walletAddress, step]);
+  }, [contract, walletAddress, step, updateGameData]);
 
   //* Handle alerts
   useEffect(() => {
