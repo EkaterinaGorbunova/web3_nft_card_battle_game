@@ -99,9 +99,9 @@ export const GlobalContextProvider = ({ children }) => {
     setSmartContractAndProvider();
   }, []);
 
-  useEffect(() => {
-    console.log('Contract after state update:', contract);
-  }, [contract]);
+  // useEffect(() => {
+  //   console.log('Contract after state update:', contract);
+  // }, [contract]);
 
   //* Set the game data to the state
   useEffect(() => {
@@ -117,7 +117,7 @@ export const GlobalContextProvider = ({ children }) => {
         player2Ref,
       });
     }
-  }, [contract, step]);
+  }, [contract, walletAddress, step]);
 
   //* Handle alerts
   useEffect(() => {
@@ -141,9 +141,6 @@ export const GlobalContextProvider = ({ children }) => {
         let activeBattle = null;
 
         fetchedBattles.forEach((battle) => {
-          console.log('battle.players.find((player)', battle.players)
-          console.log('walletAddress:', walletAddress)
-
           if (battle.players.find((player) => player.toLowerCase() === walletAddress.toLowerCase())) {
             if (battle.winner.startsWith('0x00')) {
               activeBattle = battle;

@@ -39,7 +39,7 @@ const CreateBattle = () => {
     }
   };
 
-  console.log('waitBattle', waitBattle)
+  console.log('waitBattle:', waitBattle)
 
   return (
     <>

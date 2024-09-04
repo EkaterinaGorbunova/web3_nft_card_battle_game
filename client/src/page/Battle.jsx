@@ -62,10 +62,7 @@ const Battle = () => {
     playAudio(choice === 1 ? attackSound : defenseSound);
 
     try {
-      console.log('Wove run')
       await contract.attackOrDefendChoice(choice, battleName, { gasLimit: 200000 });
-      console.log('Wove run2')
-
 
       setShowAlert({
         status: true,

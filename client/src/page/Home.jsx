@@ -12,7 +12,6 @@ const Home = () => {
   const handleClick = async () => {
     try {
       const playerExists = await contract.isPlayer(walletAddress);
-      console.log('playerExists:', playerExists)
 
       if (!playerExists) {
         await contract.registerPlayer(playerName, playerName, { gasLimit: 500000 });
