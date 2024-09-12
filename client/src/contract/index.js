@@ -1,3 +1,3 @@
-import contract from "./AVAXGods.json"
-export const ADDRESS = "0x665b3f627F1720736b45d2E98aCda7dF84C2FF3C"
+import contract from "./BattleTitans.json"
+export const ADDRESS = "0xc5A7e81CFa4c74E61f899CAe09ca10519758F9Fc"
 export const { abi: ABI } = contract;
