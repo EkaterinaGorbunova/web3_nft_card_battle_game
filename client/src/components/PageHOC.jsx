@@ -25,8 +25,6 @@ const PageHOC = (Component, title, description) => () => {
             src={logo}
             alt='Company logo'
             className={styles.hocLogo}
-            srcSet={`${logo} 480w, ${logo} 800w, ${logo} 1200w`}
-            sizes='(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px'
             loading='lazy'
           />
           <span className=' text-siteViolet'>Battle</span>Titans
