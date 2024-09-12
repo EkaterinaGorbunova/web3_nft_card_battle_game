@@ -12,16 +12,28 @@ const PageHOC = (Component, title, description) => () => {
 
   return (
     <div className={styles.hocContainer}>
-      {showAlert?.status && <Alert type={showAlert.type} message={showAlert.message} />}
+      {showAlert?.status && (
+        <Alert type={showAlert.type} message={showAlert.message} />
+      )}
 
       <div className={styles.hocContentBox}>
-        <div className='flex font-rajdhani font-bold sm:text-4xl text-2xl text-white items-center cursor-pointer' onClick={() => navigate('/')} >
-          <img src={logo} alt="logo" className={styles.hocLogo}/>
-          <span className=' text-siteViolet'>Battle</span>Titans     
-        </div> 
+        <div
+          className='flex font-rajdhani font-bold sm:text-4xl text-2xl text-white items-center cursor-pointer'
+          onClick={() => navigate('/')}
+        >
+          <img
+            src={logo}
+            alt='Company logo'
+            className={styles.hocLogo}
+            srcSet={`${logo} 480w, ${logo} 800w, ${logo} 1200w`}
+            sizes='(max-width: 600px) 480px, (max-width: 1200px) 800px, 1200px'
+            loading='lazy'
+          />
+          <span className=' text-siteViolet'>Battle</span>Titans
+        </div>
 
         <div className={styles.hocBodyWrapper}>
-          <div className="flex flex-row w-full">
+          <div className='flex flex-row w-full'>
             <h1 className={`flex ${styles.headText} head-text`}>{title}</h1>
           </div>
 
@@ -33,8 +45,17 @@ const PageHOC = (Component, title, description) => () => {
         <p className={styles.footerText}>Made with 💜 by Kate</p>
       </div>
 
-      <div className="flex flex-1">
-        <img src={heroImg} alt="hero-img" className="w-full xl:h-full object-cover" />
+      <div className='flex flex-1'>
+        <img
+          src={heroImg}
+          alt='hero-img'
+          className='w-full xl:h-full object-cover'
+          srcSet={`${heroImg} 600w, ${heroImg} 1200w, ${heroImg} 1800w`}
+          sizes='(max-width: 600px) 100vw, 
+                (max-width: 1200px) 80vw, 
+                60vw'
+          loading='lazy'
+        />
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
 // backgrounds
-import saiman from './background/saiman.jpg';
-import astral from './background/astral.jpg';
-import eoaalien from './background/eoaalien.jpg';
-import panight from './background/panight.jpg';
-import heroImg from './background/hero-img.jpg';
+import saiman from './background/saiman.webp';
+import astral from './background/astral.webp';
+import eoaalien from './background/eoaalien.webp';
+import panight from './background/panight.webp';
+import heroImg from './background/hero-img.webp';
 
 // cards
 import ace from './Ace.png';
@@ -38,7 +38,7 @@ import widowmaker from './Widowmaker.png';
 import xho from './Xho.png';
 
 // logo
-import logo from './logo.png';
+import logo from './logo.webp';
 
 // icon
 import attack from './attack.png';
