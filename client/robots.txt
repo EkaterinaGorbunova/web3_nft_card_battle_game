@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /private/
-Allow: /public/
-Sitemap: https://nft-card-battle-game.vercel.app/sitemap.xml
