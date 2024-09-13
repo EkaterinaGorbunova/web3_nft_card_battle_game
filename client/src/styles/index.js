@@ -10,7 +10,7 @@ const styles = {
 
   // hoc page
   hocContainer: 'min-h-screen flex xl:flex-row flex-col relative',
-  hocContentBox: 'flex flex-1 justify-between bg-siteblack py-8 sm:px-12 px-8 flex-col',
+  hocContentBox: 'min-h-screen flex flex-1 justify-between bg-siteblack py-8 sm:px-12 px-8 flex-col',
   // hocLogo: 'w-[160px] h-[52px] object-contain cursor-pointer',
   hocLogo: 'w-[56px] h-[56px] object-contain cursor-pointer',
   hocBodyWrapper: 'flex-1 flex justify-center flex-col xl:mt-0 my-16',
