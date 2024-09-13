@@ -24,8 +24,9 @@ const PageHOC = (Component, title, description) => () => {
           <img
             src={logo}
             alt='Company logo'
-            className={styles.hocLogo}
-            loading='lazy'
+            className={`${styles.hocLogo} w-[56px] h-[56px]`}
+            width='56'
+            height='56'
           />
           <span className=' text-siteViolet'>Battle</span>Titans
         </div>
@@ -52,7 +53,7 @@ const PageHOC = (Component, title, description) => () => {
           sizes='(max-width: 600px) 100vw, 
                 (max-width: 1200px) 80vw, 
                 60vw'
-          loading='lazy'
+          loading='eager'
         />
       </div>
     </div>

@@ -22,6 +22,18 @@ export default defineConfig({
         chunkFileNames: 'chunks/[name]-[hash].js',
         entryFileNames: 'entry/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash][extname]',
+         // Split code into separate chunks
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+      },
+    },
+    minify: 'terser', // Ensure minification is enabled
+    terserOptions: {
+      compress: {
+        drop_console: true, // Optional: remove console logs
       },
     },
   },
