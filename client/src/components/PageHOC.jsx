@@ -44,19 +44,25 @@ const PageHOC = (Component, title, description) => () => {
         <p className={styles.footerText}>Made with 💜 by Kate</p>
       </div>
 
-      <div className='flex flex-1'>
+      <div className='flex flex-1 xl:h-screen xl:sticky xl:top-0 flex-col items-center justify-center gap-6 py-8 bg-gradient-to-br from-siteblack via-[#1a0f33] to-siteblack overflow-hidden'>
         <img
           src={heroImg}
           alt='hero-img'
-          className='w-full xl:h-full object-cover'
-          srcSet={`${heroImg} 600w, ${heroImg} 1200w, ${heroImg} 1800w`}
-          sizes='(max-width: 600px) 100vw, 
-                (max-width: 1200px) 80vw, 
-                60vw'
-          width='1200'
-          height='1200'
+          className='w-full h-auto max-h-[70vh] xl:max-h-[75vh] object-contain object-center'
+          width='1280'
+          height='1118'
           loading='eager'
         />
+        <div className='hidden xl:flex flex-col items-center text-center px-8 max-w-xl'>
+          <p className='font-rajdhani text-siteWhite text-base mb-3 whitespace-nowrap'>
+            Built on the Avalanche network · battle stats stored on-chain
+          </p>
+          <div className='flex flex-row gap-2 flex-wrap justify-center'>
+            <span className='px-3 py-1 rounded-full text-xs font-rajdhani font-semibold bg-siteDimBlack/70 border border-siteViolet/40 text-white'>Avalanche Fuji</span>
+            <span className='px-3 py-1 rounded-full text-xs font-rajdhani font-semibold bg-siteDimBlack/70 border border-siteViolet/40 text-white'>ERC-1155</span>
+            <span className='px-3 py-1 rounded-full text-xs font-rajdhani font-semibold bg-siteDimBlack/70 border border-siteViolet/40 text-white'>EVM compatible</span>
+          </div>
+        </div>
       </div>
     </div>
   );

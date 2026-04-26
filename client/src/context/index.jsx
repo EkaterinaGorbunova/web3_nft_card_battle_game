@@ -34,6 +34,7 @@ export const GlobalContextProvider = ({ children }) => {
   const [updateGameData, setUpdateGameData] = useState(0);
   const [battleGround, setBattleGround] = useState('bg-astral')
   const [step, setStep] = useState(1);
+  const [hasInitiatedConnect, setHasInitiatedConnect] = useState(false);
 
   const player1Ref = useRef();
   const player2Ref = useRef();
@@ -67,33 +68,38 @@ export const GlobalContextProvider = ({ children }) => {
 
   //* Set the wallet address to the state
   const updateCurrentWalletAddress = async () => {
-    const accounts = await window?.ethereum?.request({
-      method: 'eth_requestAccounts',
-    });
+    try {
+      const accounts = await window?.ethereum?.request({
+        method: 'eth_requestAccounts',
+      });
 
-    if (accounts) setWalletAddress(accounts[0]);
+      if (accounts) setWalletAddress(accounts[0]);
+    } catch (error) {
+      console.warn('Wallet connection request failed:', error);
+    }
   };
-
-  // useEffect(() => {
-  //   updateCurrentWalletAddress();
-  //   window?.ethereum?.on('accountsChanged', updateCurrentWalletAddress);
-  // }, [])
 
   //* Set the smart contract and the provider th the state
   useEffect(() => {
     const setSmartContractAndProvider = async () => {
-      const web3Modal = new Web3Modal();
-      const connection = await web3Modal.connect();
-      const newProvider = new ethers.providers.Web3Provider(connection);
-      const signer = newProvider.getSigner();
-      const newContract = new ethers.Contract(ADDRESS, ABI, signer);
+      if (!window?.ethereum) return;
 
-      setProvider(newProvider);
-      setContract(newContract);
+      try {
+        const web3Modal = new Web3Modal();
+        const connection = await web3Modal.connect();
+        const newProvider = new ethers.providers.Web3Provider(connection);
+        const signer = newProvider.getSigner();
+        const newContract = new ethers.Contract(ADDRESS, ABI, signer);
 
-      // https://ethereum.stackexchange.com/questions/151791/error-user-rejected-when-trying-to-do-connection-to-core-app-wallet-extension-o
-      updateCurrentWalletAddress();
-      window?.ethereum?.on('accountsChanged', updateCurrentWalletAddress);
+        setProvider(newProvider);
+        setContract(newContract);
+
+        // https://ethereum.stackexchange.com/questions/151791/error-user-rejected-when-trying-to-do-connection-to-core-app-wallet-extension-o
+        updateCurrentWalletAddress();
+        window?.ethereum?.on('accountsChanged', updateCurrentWalletAddress);
+      } catch (error) {
+        console.warn('Web3 provider setup failed:', error);
+      }
     };
 
     setSmartContractAndProvider();
@@ -181,7 +187,8 @@ export const GlobalContextProvider = ({ children }) => {
         battleGround, setBattleGround,
         errorMessage, setErrorMessage,
         player1Ref, player2Ref,
-        updateCurrentWalletAddress
+        updateCurrentWalletAddress,
+        hasInitiatedConnect, setHasInitiatedConnect,
       }}
     >
       {children}
