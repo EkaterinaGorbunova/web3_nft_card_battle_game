@@ -40,8 +40,6 @@ const PageHOC = (Component, title, description) => () => {
 
           <Component />
         </div>
-
-        <p className={styles.footerText}>Made with 💜 by Kate</p>
       </div>
 
       <div className='flex flex-1 xl:h-screen xl:sticky xl:top-0 flex-col items-center justify-center gap-6 py-8 bg-gradient-to-br from-siteblack via-[#1a0f33] to-siteblack overflow-hidden'>
