@@ -14,6 +14,7 @@ const Home = () => {
     setErrorMessage,
     updateCurrentWalletAddress,
     setHasInitiatedConnect,
+    hasInitiatedConnect,
   } = useGlobalContext();
   const [playerName, setPlayerName] = useState('');
   const navigate = useNavigate();
@@ -63,9 +64,17 @@ const Home = () => {
     }
   }, [gameData]);
 
-  if (walletAddress) {
+  if (walletAddress && hasInitiatedConnect) {
     return (
       <div className="flex flex-col">
+        <button
+          type="button"
+          onClick={() => setHasInitiatedConnect(false)}
+          className="self-start font-rajdhani text-siteViolet text-base mb-4 cursor-pointer hover:underline"
+        >
+          ← Back
+        </button>
+
         <CustomInput
           label="Name"
           placeHolder="Enter your player name"
@@ -156,7 +165,7 @@ const Home = () => {
           restStyles="sm:text-xl text-lg sm:px-8 px-6 sm:py-3 py-2"
         />
         <a
-          href="https://faucet.avax.network/"
+          href="https://build.avax.network/console/primary-network/faucet"
           target="_blank"
           rel="noreferrer"
           className="font-rajdhani text-siteViolet underline self-center"

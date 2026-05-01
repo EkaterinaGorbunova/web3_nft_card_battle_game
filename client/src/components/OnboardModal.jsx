@@ -94,7 +94,7 @@ const OnboardModal = () => {
             </p>
             <CustomButton
               title="Get free test AVAX"
-              handleClick={() => window.open('https://faucet.avax.network/', '_blank')}
+              handleClick={() => window.open('https://build.avax.network/console/primary-network/faucet', '_blank')}
             />
           </>
         );
